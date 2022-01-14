@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업다운게임</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+        .contWrap{
+            position: relative;
+            width: 400px;
+            background-color: rgb(122, 110, 95);
+            padding: 20px;
+            top : 40%;
+            left : 50%;
+            text-align: center;
+            transform: translate(-50%, -50%); 
+        }
+
+        input {
+            padding: 10px 20px;
+            font-size: 20px;
+            text-align: center;
+            max-width: 170px;
+        }
+
+        button {
+            font-size : 20px;
+            padding: 8px 20px;
+            text-align: center;
+        
+        }
+
+    </style>
+
+    <script>
+        // 코드를 작성하기전 웹브라우저에서 HTML과 CSS를 확인해보세요! 그러면 코드 작성에 더욱 도움이 될거 같아요!
+
+        // HTML & CSS는 미리 완성 시켜 놨습니다. JS만 작성해서 실습을 완료하시면 됩니다!
+        // 사용된 HTML의 태그는 3가지입니다.
+        // <input class="UserInput"></input> 사용자가 예측한 숫자를 적는 곳입니다.
+        // <p class="result"></p> 시작시에 1부터 10사이, 게임 시작후 -> 업, 다운, 정답의 여부가 나오는 곳 입니다.
+        // <button class="startBtn"></button> 확인 버튼입니다. 여기에 클릭이벤트를 연결하시면 됩니다!
+
+        // 코드에는 정답은 없습니다. 자유롭게 입력하시고 코드를 개선시키고 싶으면 자유롭게 기능을 추가 및 개선시켜도 됩니다.(HTML, CSS, JS 모두 가능 !!)
+
+        // 생성된 랜덤숫자(난수)를 콘솔로그나 alert()에 표기시켜 주면 테스트하기 더 좋지 않을까요~?
+        // 배열을 이용하거나, 함수를 따로 정의해 재사용성을 고려해주면 더 좋을거 같네요!
+
+        window.onload = function(){
+            let random_number = parseInt(Math.random() * 100);
+            alert(random_number);
+
+            let a = document.querySelector('.startBtn');
+            a.addEventListener('click', showConsole);
+            let i = 0;
+            
+            function showConsole() {
+                let inputText = document.querySelector('.input_box');
+      
+                let inputValue = inputText.value;
+                let textbox = document.querySelector(".result");
+                let countValue = document.querySelector(".count");
+                i+=1;
+                countValue.innerHTML = i;
+                if(i>10){
+                    countValue.innerHTML = "실패!!"
+                }
+
+                if (inputValue<random_number){
+                    textbox.innerHTML = "업!"  
+                }
+                else if (inputValue>random_number){
+                    textbox.innerHTML = "다운!"
+                }
+                else if (inputValue==random_number){
+                    textbox.innerHTML = "정답!"
+                } 
+            } 
+        }
+    </script>
+
+    
+</head>
+<body>
+    <div class="contWrap">
+        <h3 class="count">Choose number</h3>
+        <p class="result">1부터 100사이</p>
+        <input type="number" class="input_box" onkeypress="show_name(event)" value="0" max="99" min="0">
+        <button type="button" class="startBtn">확인</button>
+    </div>
+    
+</body>
+</html>
